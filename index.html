@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#071321" />
+  <title>Azza AI</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-mark" aria-hidden="true">A</div>
+      <div class="brand-copy"><strong>Azza AI</strong><span>Твоя AI-студия</span></div>
+      <button class="icon-button" aria-label="Уведомления" data-toast="Уведомлений пока нет"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></button>
+    </header>
+
+    <main id="main-content">
+      <section class="screen active" id="screen-home" data-screen="home">
+        <div class="welcome-block">
+          <div class="welcome-copy">
+            <p class="eyebrow">ТВОЯ AI-СТУДИЯ</p>
+            <h1>Идеи становятся<br><span>реальностью.</span></h1>
+            <p class="muted">Общайся, создавай изображения и видео — всё в одном месте.</p>
+          </div>
+          <div class="orb-art" aria-hidden="true"><div class="orb-core">✦</div><i></i><b></b></div>
+        </div>
+
+        <button class="premium-banner" data-navigate="premium">
+          <span class="crown">♛</span><span class="banner-copy"><strong>Открой больше возможностей</strong><small>Сравни тарифы Azza AI</small></span><span class="chevron">›</span>
+        </button>
+
+        <div class="section-heading"><h2>Инструменты</h2><span class="subtle-label">4 функции</span></div>
+        <div class="tool-grid">
+          <button class="tool-card" data-navigate="chat"><span class="tool-icon cyan">☷</span><strong>AI Chat</strong><small>Ответы и идеи</small><span class="card-arrow">↗</span></button>
+          <button class="tool-card" data-navigate="photo"><span class="tool-icon blue">▧</span><strong>Фото AI</strong><small>Создание и редактура</small><span class="card-arrow">↗</span></button>
+          <button class="tool-card" data-navigate="video"><span class="tool-icon violet">▣</span><strong>Видео AI</strong><small>Видео по описанию</small><span class="card-arrow">↗</span></button>
+          <button class="tool-card" data-navigate="voice"><span class="tool-icon teal">≋</span><strong>Озвучка</strong><small>Текст в голос</small><span class="card-arrow">↗</span></button>
+        </div>
+
+        <div class="section-heading recent-heading"><h2>Последние работы</h2><button class="text-button" data-navigate="works">Все работы <span>›</span></button></div>
+        <div class="empty-preview"><div class="empty-icon">▱</div><div><strong>Здесь появятся твои работы</strong><p>Создай первый проект — он сохранится здесь.</p></div></div>
+      </section>
+
+      <section class="screen" id="screen-chat" data-screen="chat">
+        <div class="page-heading"><button class="back-button" data-navigate="home" aria-label="Назад">‹</button><div><h1>AI Chat</h1><p>Твой AI-помощник</p></div><button class="icon-button" data-chat-clear aria-label="Новый чат">＋</button></div>
+        <div class="chat-intro"><div class="mini-spark">✦</div><h2>Привет! Чем могу помочь?</h2><p>Задавай вопросы, проси объяснения или придумывай новые идеи.</p></div>
+        <div class="suggestions"><button data-prompt="Придумай идею для TikTok">✦ <span>Придумай идею для TikTok</span> <b>›</b></button><button data-prompt="Помоги написать текст для ролика">▤ <span>Напиши текст для ролика</span> <b>›</b></button><button data-prompt="Объясни сложную тему простыми словами">◎ <span>Объясни сложную тему</span> <b>›</b></button><button data-prompt="Помоги составить план проекта">♧ <span>Помоги с планом проекта</span> <b>›</b></button></div>
+        <div class="chat-messages" id="chat-messages" aria-live="polite"></div>
+        <form class="composer" id="chat-form"><textarea id="chat-input" rows="1" maxlength="4000" placeholder="Напиши сообщение..."></textarea><button class="send-button" type="submit" aria-label="Отправить">↑</button></form>
+        <p class="fine-print">Демонстрационный экран. AI-ответы подключим позже.</p>
+      </section>
+
+      <section class="screen" id="screen-photo" data-screen="photo">
+        <div class="page-heading"><button class="back-button" data-navigate="home" aria-label="Назад">‹</button><div><h1>Фото AI</h1><p>Создавай и редактируй</p></div></div>
+        <div class="segmented"><button class="selected" data-photo-mode="create">Создать</button><button data-photo-mode="edit">Редактировать</button></div>
+        <label class="field-label" for="photo-prompt">Опиши, какое изображение хочешь получить</label>
+        <textarea class="input-panel" id="photo-prompt" rows="4" placeholder="Например: уютная кофейня ночью, мягкий свет, кинематографичный стиль..."></textarea>
+        <button class="upload-box" id="photo-upload"><span class="upload-symbol">＋</span><span><strong id="photo-upload-title">Добавить референс (необязательно)</strong><small id="photo-upload-subtitle">Выбери изображение с устройства</small></span></button>
+        <input type="file" id="photo-file" accept="image/*" hidden />
+        <div class="option-row"><span>Формат</span><div class="chips"><button class="chip selected">1:1</button><button class="chip">9:16</button><button class="chip">16:9</button></div></div>
+        <button class="primary-button" data-demo="Генерация фото станет доступна после подключения AI-провайдера.">✦ Создать изображение</button>
+        <p class="fine-print">Доступные модели и лимиты появятся после настройки AI.</p>
+      </section>
+
+      <section class="screen" id="screen-video" data-screen="video">
+        <div class="page-heading"><button class="back-button" data-navigate="home" aria-label="Назад">‹</button><div><h1>Видео AI</h1><p>Создавай видео по описанию</p></div></div>
+        <label class="field-label" for="video-prompt">Что должно происходить в видео?</label>
+        <textarea class="input-panel" id="video-prompt" rows="4" placeholder="Опиши сцену, движение, атмосферу и стиль ролика..."></textarea>
+        <div class="field-group"><div class="field-label">Длительность</div><div class="chips full"><button class="chip">3 сек</button><button class="chip selected">5 сек</button><button class="chip">10 сек</button></div></div>
+        <div class="field-group"><div class="field-label">Формат</div><div class="chips full"><button class="chip selected">9:16</button><button class="chip">16:9</button><button class="chip">1:1</button></div></div>
+        <div class="note-card"><span>ⓘ</span><p>Генерация видео может занимать несколько минут. Когда подключим провайдера, здесь появятся реальные варианты и лимиты.</p></div>
+        <button class="primary-button" data-demo="Генерация видео станет доступна после подключения AI-провайдера.">▣ Сгенерировать видео</button>
+      </section>
+
+      <section class="screen" id="screen-voice" data-screen="voice">
+        <div class="page-heading"><button class="back-button" data-navigate="home" aria-label="Назад">‹</button><div><h1>Озвучка</h1><p>Преврати текст в голос</p></div></div>
+        <div class="wave-art" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        <label class="field-label" for="voice-text">Твой текст</label><textarea class="input-panel" id="voice-text" rows="6" maxlength="5000" placeholder="Вставь текст для озвучивания..."></textarea><div class="char-count"><span id="voice-count">0</span> / 5000</div>
+        <div class="option-row"><span>Язык</span><select class="select-control"><option>Русский</option><option>English</option><option>Español</option></select></div>
+        <div class="option-row"><span>Голос</span><select class="select-control"><option>Выбрать голос</option><option>Спокойный</option><option>Энергичный</option><option>Нейтральный</option></select></div>
+        <button class="primary-button" data-demo="Озвучка станет доступна после подключения AI-провайдера.">≋ Создать озвучку</button>
+      </section>
+
+      <section class="screen" id="screen-works" data-screen="works">
+        <div class="page-heading"><div><h1>Мои работы</h1><p>Твои генерации и результаты</p></div><button class="icon-button" data-toast="Фильтры появятся после подключения истории">☷</button></div>
+        <div class="filter-chips"><button class="chip selected">Все</button><button class="chip">Фото</button><button class="chip">Видео</button><button class="chip">Аудио</button></div>
+        <div class="works-empty"><div class="folder-icon">▱</div><h2>Пока здесь пусто</h2><p>Создавай изображения, видео и аудио — результаты будут сохраняться здесь.</p><button class="secondary-button" data-navigate="home">К инструментам</button></div>
+      </section>
+
+      <section class="screen" id="screen-premium" data-screen="premium">
+        <div class="premium-heading"><div class="premium-crown">♛</div><div><h1>Premium</h1><p>Больше возможностей</p></div></div>
+        <div class="billing-toggle"><button class="selected" data-billing="month">Месяц</button><button data-billing="year">Год <span class="discount">−20%</span></button></div>
+        <div class="plan-card free-plan"><div class="plan-top"><div><h2>Free</h2><p class="plan-price">0 ₽</p></div><span class="plan-label">Базовый</span></div><ul><li>Базовый доступ</li><li>Ограниченные лимиты</li><li>Стандартная очередь</li></ul><button class="plan-button neutral" data-toast="У тебя уже доступен тариф Free">Текущий тариф</button></div>
+        <div class="plan-card plus-plan"><div class="plan-top"><div><h2>Plus</h2><p class="plan-price" data-month-price="299" data-year-price="2870">299 ₽<small> / мес</small></p></div><span class="plan-label">Больше возможностей</span></div><ul><li>Увеличенные лимиты</li><li>Доступ ко всем доступным функциям</li><li>Приоритетная обработка</li></ul><button class="plan-button blue-plan-button" data-demo="Подключение подписки добавим после настройки платежей.">Выбрать Plus</button></div>
+        <div class="plan-card pro-plan"><div class="plan-top"><div><h2>Pro</h2><p class="plan-price" data-month-price="599" data-year-price="5750">599 ₽<small> / мес</small></p></div><span class="popular-tag">Популярный</span></div><ul><li>Максимальные лимиты</li><li>Более быстрая обработка</li><li>Ранний доступ к новым функциям</li></ul><button class="plan-button gold-plan-button" data-demo="Подключение подписки добавим после настройки платежей.">Выбрать Pro</button></div>
+        <p class="fine-print">Цены и условия предварительные. Оплата ещё не подключена.</p>
+      </section>
+
+      <section class="screen" id="screen-profile" data-screen="profile">
+        <div class="page-heading"><div><h1>Профиль</h1><p>Твой аккаунт и настройки</p></div><button class="icon-button" data-toast="Настройки добавим позже">⚙</button></div>
+        <div class="profile-card"><div class="avatar">A</div><div class="profile-info"><strong id="profile-name">Пользователь Azza AI</strong><small id="profile-username">Telegram Mini App</small></div><span class="chevron">›</span></div>
+        <button class="profile-row" data-navigate="premium"><span class="row-icon">♛</span><span>Мой тариф</span><small>Free</small><b>›</b></button>
+        <button class="profile-row" data-navigate="works"><span class="row-icon">▧</span><span>Мои работы</span><b>›</b></button>
+        <button class="profile-row" data-toast="Избранное добавим позже"><span class="row-icon">♡</span><span>Избранное</span><b>›</b></button>
+        <button class="profile-row" data-toast="История появится после подключения платежей"><span class="row-icon">▤</span><span>История платежей</span><b>›</b></button>
+        <button class="profile-row" data-toast="Промокоды подключим позже"><span class="row-icon">％</span><span>Промокоды</span><b>›</b></button>
+        <button class="profile-row" data-toast="Реферальная программа появится позже"><span class="row-icon">♧</span><span>Пригласить друзей</span><small>Бонусы</small><b>›</b></button>
+        <button class="profile-row" data-toast="Служба поддержки будет подключена позже"><span class="row-icon">?</span><span>Поддержка</span><b>›</b></button>
+        <button class="profile-row" data-toast="Настройки добавим позже"><span class="row-icon">⚙</span><span>Настройки</span><b>›</b></button>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Основная навигация">
+      <button class="nav-item active" data-navigate="home"><span>⌂</span><small>Главная</small></button>
+      <button class="nav-item" data-navigate="works"><span>▧</span><small>Мои работы</small></button>
+      <button class="nav-item" data-navigate="premium"><span>♛</span><small>Premium</small></button>
+      <button class="nav-item" data-navigate="profile"><span>♙</span><small>Профиль</small></button>
+    </nav>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
